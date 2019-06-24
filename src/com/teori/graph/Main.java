@@ -1,8 +1,7 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+//1. Buat Vertex/Node
+//2. Buat Edge/Simpul antar Node
+//3. Tentukan apakah Graph Euler atau Tidak?
+//4. Jika Iya, tampilkan Path atau jalur Euler
 package com.teori.graph;
 
 import java.util.Scanner;
@@ -21,30 +20,29 @@ public class Main {
      */
     public static void main(String[] args) {
         
-        UndirectedGraph<String, DefaultEdge> graph = new SimpleGraph<String, DefaultEdge>(DefaultEdge.class);
-        String v1 = "v1";
-        String v2 = "v2";
-        String v3 = "v3";
-        String v4 = "v4";
+        int x;
+        Scanner sc = new Scanner(System.in);
+        Graph graphBaru = new Graph();
+        System.out.println("Masukan Jumlah Node");
+        int jumlahVertex = sc.nextInt();
         
-        //Menambahkan Node
-        graph.addVertex(v1);
-        graph.addVertex(v2);
-        graph.addVertex(v3);
-        graph.addVertex(v4);
-        
-        //Menambahkan Edge
-        graph.addEdge(v1, v2);
-        graph.addEdge(v2, v3);
-        graph.addEdge(v3, v4);
-        graph.addEdge(v4, v1);
-        
-        //Cek apa betul udah tersambung graph nya
-        if (graph.getEdge(v1, v2) != null) {
-            System.out.println("Ada Jalur");
-        }else{
-            System.out.println("Tidak Ada Jalur");
+        for (int i = 0; i < jumlahVertex; i++) {
+            System.out.println("Masukan Item Node "+i);
+            graphBaru.addVertex(sc.next());
         }
+        
+        do {            
+            System.out.println("Masukan Simpul ");
+            String e1 = sc.next();
+            String e2 = sc.next();
+            graphBaru.addEdge(e1, e2);
+            System.out.println("Lanjutkan????? 1 Untuk Lanjutkan, 0 Untuk Batal");
+            x=sc.nextInt();
+        } while (x==1);
+        
+        System.out.println("Graph\n"+graphBaru.getGraph().toString());
+        System.out.println("\\n\\n**********Spanning Tree*********");
+        graphBaru.getSpanningTree();
     }
     
 }
